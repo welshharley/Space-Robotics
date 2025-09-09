@@ -29,13 +29,26 @@ class GraphSearch:
         # Incrementally create the path
         while current.idx != goal_idx:
 
-
             ####################
             ## YOUR CODE HERE ##
             ## Task 2         ##
             ####################
-            
-            pass # you can remove this after completing this task
+            best_neighbour = None 
+            best_neighbour_distance = 9**9
+            for neighbour in current.neighbours:
+                count_visits = path.count(neighbour)
+                if count_visits < 3:
+                    distance_to_goal = neighbour.distance_to(self.graph_.nodes_[goal_idx]) + 100 * count_visits
+                    if distance_to_goal < best_neighbour_distance:
+                        best_neighbour_distance = distance_to_goal
+                        best_neighbour = neighbour
+            if best_neighbour is None:
+                break
+            else:
+                current = best_neighbour
+                path.append(best_neighbour)
+        
+        return path
 
 
 
