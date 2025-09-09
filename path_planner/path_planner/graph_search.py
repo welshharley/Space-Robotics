@@ -48,20 +48,6 @@ class GraphSearch:
                 current = best_neighbour
                 path.append(best_neighbour)
         
-        return path
-
-
-
-
-
-
-
-
-
-
-
-
-            
         self.parent_logger_.info('Goal found!')
         return path
 
