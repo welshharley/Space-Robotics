@@ -386,18 +386,20 @@ class Graph:
         best_dist = 999999999
         best_index = None
 
+        point_node = Node(xy[0], xy[1], -1)
+
         for i in range(len(self.nodes_)):
 
             ####################
             ## YOUR CODE HERE ##
             ## Task 1         ##
             ####################
-
-
-
-
-
-            pass # you can remove this line after you have filled in the above code
+            dist = point_node.distance_to(self.nodes_[i])
+            
+            if dist < best_dist:
+                best_dist = dist
+                best_index = i
+                print(best_dist)
 
         return best_index
 

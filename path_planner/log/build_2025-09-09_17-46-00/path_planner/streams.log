@@ -1,0 +1,17 @@
+[4.488s] Invoking command in '/home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner': PYTHONPATH=/home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/parallels/ros_ws/src/Space-Robotics/path_planner/install/path_planner/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner/build --no-deps symlink_data
+[6.128s] running develop
+[7.669s] running egg_info
+[7.670s] writing path_planner.egg-info/PKG-INFO
+[7.672s] writing dependency_links to path_planner.egg-info/dependency_links.txt
+[7.672s] writing entry points to path_planner.egg-info/entry_points.txt
+[7.672s] writing requirements to path_planner.egg-info/requires.txt
+[7.672s] writing top-level names to path_planner.egg-info/top_level.txt
+[7.679s] reading manifest file 'path_planner.egg-info/SOURCES.txt'
+[7.679s] writing manifest file 'path_planner.egg-info/SOURCES.txt'
+[7.683s] running build_ext
+[7.683s] Creating /home/parallels/ros_ws/src/Space-Robotics/path_planner/install/path_planner/lib/python3.10/site-packages/path-planner.egg-link (link to .)
+[7.683s] Installing graph_search_controller_node script to /home/parallels/ros_ws/src/Space-Robotics/path_planner/install/path_planner/lib/path_planner
+[7.683s] 
+[7.683s] Installed /home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner
+[7.683s] running symlink_data
+[7.780s] Invoked command in '/home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner' returned '0': PYTHONPATH=/home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/parallels/ros_ws/src/Space-Robotics/path_planner/install/path_planner/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/parallels/ros_ws/src/Space-Robotics/path_planner/build/path_planner/build --no-deps symlink_data

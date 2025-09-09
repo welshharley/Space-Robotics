@@ -34,6 +34,7 @@ class GraphSearch:
             ## YOUR CODE HERE ##
             ## Task 2         ##
             ####################
+            
             pass # you can remove this after completing this task
 
 
