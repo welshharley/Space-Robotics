@@ -192,12 +192,11 @@ class GraphSearch:
         ## Task 4         ##
         ####################
 
-
-
-
-
-
-        
+        while current.parent_node is not None:
+            path.append(current.parent_node)
+            current = current.parent_node
+            
+        path.reverse()
         return path
 
     def find_connected_nodes(self, start_idx):
