@@ -89,7 +89,7 @@ class GraphSearch:
             ####################
             # Move the node to the visited set
             visited_set.append(node_idx)
-            unvisited_set.pop(node_idx)
+            unvisited_set.pop(node_idx_in_unvisited)
 
             ####################
             ## YOUR CODE HERE ##
@@ -155,7 +155,7 @@ class GraphSearch:
                         ## YOUR CODE HERE ##
                         ## Task 3         ##
                         ####################
-                        neighbour.parent_node = self.graph.nodes_[node_idx]
+                        neighbour.parent_node = self.graph_.nodes_[node_idx]
                         neighbour.cost_to_node = cost_to_node
                         neighbour.cost_to_node_to_goal_heuristic = cost_to_node_to_goal_heuristic
 
