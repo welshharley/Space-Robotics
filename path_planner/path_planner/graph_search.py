@@ -80,19 +80,16 @@ class GraphSearch:
             ####################
             # Select a node
             # hint: self.get_minimum_cost_node(unvisited_set) will help you find the node with the minimum cost
-
-
+            node_idx_in_unvisited = self.get_minimum_cost_node(unvisited_set)
+            node_idx = unvisited_set[node_idx_in_unvisited]
             
-
             ####################
             ## YOUR CODE HERE ##
             ## Task 3         ##
             ####################
             # Move the node to the visited set
-
-
-
-            
+            visited_set.append(node_idx)
+            unvisited_set.pop(node_idx)
 
             ####################
             ## YOUR CODE HERE ##
@@ -100,12 +97,9 @@ class GraphSearch:
             ####################
             # Termination criteria
             # Finish early (i.e. "return") if the goal is found
-            # if ??:
-            #     self.parent_logger_.info('Goal found!')
-            #     return
-
-
-
+            if node_idx == goal_idx: #check if  this is the actual statement needded
+                self.parent_logger_.info('Goal found!')
+                return
 
             # For each neighbour of the node
             for neighbour_idx in range(len(self.graph_.nodes_[node_idx].neighbours)):
@@ -121,9 +115,6 @@ class GraphSearch:
                     pass
                 
                 else:
-
-                    
-
                     ####################
                     ## YOUR CODE HERE ##
                     ## Task 3         ##
@@ -132,9 +123,8 @@ class GraphSearch:
                     # hint: cost_to_node = cost-of-previous-node + cost-of-edge 
                     # hint: cost_to_node_to_goal_heuristic = cost_to_node + self.heuristic_weight_ * A*-heuristic-score
                     # hint: neighbour.distance_to() function is likely to be helpful for the heuristic-score
-
-
-                    
+                    cost_to_node = self.graph_.nodes_[node_idx].cost_to_node + neighbour_edge_cost
+                    cost_to_node_to_goal_heuristic = cost_to_node + self.heuristic_weight_ * neighbour.distance_to(self.graph_.nodes_[goal_idx])
 
 
                     # Check if neighbours is already in unvisited
@@ -148,14 +138,10 @@ class GraphSearch:
                         ## YOUR CODE HERE ##
                         ## Task 3         ##
                         ####################
-                        pass # you can remove this line after you've completed the task
-                        # if ??:
-                        #     neighbour.parent_node = ??
-                        #     neighbour.cost_to_node = ??
-                        #     neighbour.cost_to_node_to_goal_heuristic = ??
-
-
-
+                        if cost_to_node < neighbour.cost_to_node:
+                             neighbour.parent_node = self.graph_.nodes_[node_idx]
+                             neighbour.cost_to_node = cost_to_node
+                             neighbour.cost_to_node_to_goal_heuristic = cost_to_node_to_goal_heuristic
 
                     else:
 
@@ -169,9 +155,9 @@ class GraphSearch:
                         ## YOUR CODE HERE ##
                         ## Task 3         ##
                         ####################
-                        # neighbour.parent_node = ??
-                        # neighbour.cost_to_node = ??
-                        # neighbour.cost_to_node_to_goal_heuristic = ??
+                        neighbour.parent_node = self.graph.nodes_[node_idx]
+                        neighbour.cost_to_node = cost_to_node
+                        neighbour.cost_to_node_to_goal_heuristic = cost_to_node_to_goal_heuristic
 
 
 
