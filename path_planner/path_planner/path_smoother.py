@@ -4,7 +4,7 @@ import copy
 
 from geometry_msgs.msg import Point
 
-from.graph import is_occluded
+from graph import is_occluded
 
 class PathSmoother():
     def __init__(self, parent_node, graph, alpha, beta):
@@ -40,25 +40,27 @@ class PathSmoother():
         ## YOUR CODE HERE ##
         ## Task 5         ##
         ####################
+        """
+        sum_of = 0
+        previsous_smooth_path = None
+        while True:
+            for idx in range(1, len(path_smooth)-1):
+                previsous_smooth_path = path_smooth[idx]
+                path_smooth[idx] = path_smooth[idx] -(self.alpha_ + 2 * self.beta_) * path_smooth[idx] + self.alpha_ * path[idx] + self.beta_ * (path_smooth[idx-1] + path_smooth[idx+1])
+                obstacle = is_occluded(self.graph_.map_.obstacle_map_, [path_smooth[idx-1].x, path_smooth[idx-1].y], [path_smooth[idx].x, path_smooth[idx].y])
+                if obstacle:
+                    path_smooth[idx] = path[idx]
+
+                sum_of += (path_smooth[idx].x - previsous_smooth_path.y)**2 + (path_smooth[idx].y - previsous_smooth_path.y)**2
+                if sum_of < 0.001:
+                    self.path_smooth_ = path_smooth
+                    break
+"""
+        
         
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        self.path_smooth_ = path_smooth
+        
