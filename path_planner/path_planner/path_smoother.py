@@ -4,7 +4,7 @@ import copy
 
 from geometry_msgs.msg import Point
 
-from graph import is_occluded
+from .graph import is_occluded
 
 class PathSmoother():
     def __init__(self, parent_node, graph, alpha, beta):
@@ -40,26 +40,31 @@ class PathSmoother():
         ## YOUR CODE HERE ##
         ## Task 5         ##
         ####################
-        """
-        sum_of = 0
-        previsous_smooth_path = None
-        while True:
+        
+        
+        for _ in range(1000):
+            sum_of = 0.0
             for idx in range(1, len(path_smooth)-1):
-                previsous_smooth_path = path_smooth[idx]
-                path_smooth[idx] = path_smooth[idx] -(self.alpha_ + 2 * self.beta_) * path_smooth[idx] + self.alpha_ * path[idx] + self.beta_ * (path_smooth[idx-1] + path_smooth[idx+1])
-                obstacle = is_occluded(self.graph_.map_.obstacle_map_, [path_smooth[idx-1].x, path_smooth[idx-1].y], [path_smooth[idx].x, path_smooth[idx].y])
-                if obstacle:
-                    path_smooth[idx] = path[idx]
-
-                sum_of += (path_smooth[idx].x - previsous_smooth_path.y)**2 + (path_smooth[idx].y - previsous_smooth_path.y)**2
-                if sum_of < 0.001:
-                    self.path_smooth_ = path_smooth
-                    break
-"""
-        
-        
+                new_x = path_smooth[idx].x - (self.alpha_ + 2 * self.beta_) * path_smooth[idx].x + self.alpha_ * path[idx].x + self.beta_ * (path_smooth[idx-1].x + path_smooth[idx+1].x)
+                new_y = path_smooth[idx].y - (self.alpha_ + 2 * self.beta_) * path_smooth[idx].y + self.alpha_ * path[idx].y + self.beta_ * (path_smooth[idx-1].y + path_smooth[idx+1].y)
+                
+                block_prev = is_occluded(self.graph_.map_.obstacle_map_, [path_smooth[idx-1].x, path_smooth[idx-1].y], [new_x, new_y])
+                block_next = is_occluded(self.graph_.map_.obstacle_map_, [new_x, new_y], [path_smooth[idx+1].x, path_smooth[idx+1].y])
+                if block_next or block_prev:
+                   continue
 
 
+                dx = new_x - path_smooth[idx].x
+                dy = new_y - path_smooth[idx].y
+                sum_of += dx * dx + dy *dy
+
+                path_smooth[idx].x = new_x
+                path_smooth[idx].y = new_y
+
+            if sum_of < 0.001:
+                break
+
+        self.path_smooth_ = path_smooth
 
 
 

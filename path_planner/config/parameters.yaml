@@ -20,8 +20,8 @@ graph_search_controller_node:
     heuristic_weight: 1.0
 
     # Smoothing parameters
-    alpha: 0.1
-    beta: 0.5
+    alpha: 0.05
+    beta: 0.8
 
     # Initial start position and goal position. Subsequent goals set as rviz Publish Point clicks 
     # Good for Mars environment
