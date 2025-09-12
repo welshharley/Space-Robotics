@@ -206,19 +206,6 @@ class Graph:
                                 theta = math.atan((world_z2 - world_z1) / math.sqrt((world_x2 - world_x1)**2 + (world_y2 - world_y1)**2))
                                 energy_cost = abs((u*m*g*math.cos(theta) + m*g*math.sin(theta))*dx)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                             else:
 
                                 # Define the edge cost as standard 2D Euclidean distance in pixel coordinates
@@ -242,15 +229,15 @@ class Graph:
         ## Task 7         ##
         ####################
 
-        # while len(self.nodes_) < num_nodes:
-        #   ??
+        while len(self.nodes_) < num_nodes:
+            random_x = random.randint(self.map_.min_x_, self.map_.max_x_-1)
+            random_y = random.randint(self.map_.min_y_, self.map_.max_y_-1)
 
-
-
-
-
-
-
+            occupied = self.map_.is_occupied(random_x, random_y)
+            if not occupied:
+                self.nodes_.append(Node(random_x, random_y, idx))
+                idx = idx + 1
+            idx += 1
 
 
         # Create edges
@@ -297,6 +284,9 @@ class Graph:
                             # Create the edge
                             node_i.neighbours.append(node_j)
                             node_i.neighbour_costs.append(energy_cost)
+                            
+        for i, n in enumerate(self.nodes_):
+            n.idx = i
 
 
     def create_distance_transform_graph(self, num_nodes, distance_threshold):
