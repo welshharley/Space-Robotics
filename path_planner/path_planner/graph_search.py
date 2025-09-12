@@ -235,21 +235,12 @@ class GraphSearch:
             # Select a node
             # hint: self.get_minimum_cost_node(unvisited_set) will help you find the node with the minimum cost
 
-            #########################
-            ## YOUR CODE GOES HERE ##
-            #########################
-
-
-
             # Move the node to the visited set
             node_idx_in_unvisited = self.get_minimum_cost_node(unvisited_set)
             node_idx = unvisited_set[node_idx_in_unvisited]
 
             visited_set.append(node_idx)
             unvisited_set.pop(node_idx_in_unvisited)
-
-
-
 
             # For each neighbour of the node
             for neighbour_idx in range(len(self.graph_.nodes_[node_idx].neighbours)):
@@ -263,14 +254,9 @@ class GraphSearch:
                     
                     # Do nothing
                     pass
-                
                 else:
 
                     # Compute the cost of this neighbour node
-                    
-                    ##########################
-                    ## YOUR CODE GOES HERE  ##
-                    ##########################
                     
                     tentative_cost = self.graph_.nodes_[node_idx].cost_to_node + neighbour_cost
 
@@ -283,41 +269,20 @@ class GraphSearch:
                         # If the cost is lower than the previous cost for this node
                         # Then update it to the new cost
                         # Also, update the parent pointer to point to the new parent 
-
-                        ##########################
-                        ## YOUR CODE GOES HERE  ##
-                        ## FIX THE ?? BELOW     ##
-                        ##########################
-                        # if ??:
-                        #     neighbour.parent_node = ??
-                        #     neighbour.cost_to_node = ??
                         if tentative_cost < neighbour.cost_to_node:
                             neighbour.parent_node = self.graph_.nodes_[node_idx]
                             neighbour.cost_to_node = tentative_cost
                             neighbour.cost_to_node_to_goal_heuristic = tentative_cost
 
-                        
-
                     else:
-
                         # Add it to the unvisited set
                         unvisited_set.append(neighbour.idx)
 
                         # Initialise the cost and the parent pointer
                         # hint: this will be similar to your answer above
-
-                        ##########################
-                        ## YOUR CODE GOES HERE  ##
-                        ## FIX THE ?? BELOW     ##
-                        ##########################
-                        # neighbour.parent_node = ??
-                        # neighbour.cost_to_node = ??
-                        # First time we see this neighbour
                         unvisited_set.append(neighbour.idx)
                         neighbour.parent_node = self.graph_.nodes_[node_idx]
                         neighbour.cost_to_node = tentative_cost
                         neighbour.cost_to_node_to_goal_heuristic = tentative_cost
-
-                        
-        
+  
         return visited_set
