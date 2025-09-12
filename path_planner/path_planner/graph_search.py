@@ -242,6 +242,11 @@ class GraphSearch:
 
 
             # Move the node to the visited set
+            node_idx_in_unvisited = self.get_minimum_cost_node(unvisited_set)
+            node_idx = unvisited_set[node_idx_in_unvisited]
+
+            visited_set.append(node_idx)
+            unvisited_set.pop(node_idx_in_unvisited)
 
 
 
@@ -267,7 +272,7 @@ class GraphSearch:
                     ## YOUR CODE GOES HERE  ##
                     ##########################
                     
-                    
+                    tentative_cost = self.graph_.nodes_[node_idx].cost_to_node + neighbour_cost
 
 
                     # Check if neighbours is already in unvisited
@@ -286,6 +291,10 @@ class GraphSearch:
                         # if ??:
                         #     neighbour.parent_node = ??
                         #     neighbour.cost_to_node = ??
+                        if tentative_cost < neighbour.cost_to_node:
+                            neighbour.parent_node = self.graph_.nodes_[node_idx]
+                            neighbour.cost_to_node = tentative_cost
+                            neighbour.cost_to_node_to_goal_heuristic = tentative_cost
 
                         
 
@@ -303,6 +312,11 @@ class GraphSearch:
                         ##########################
                         # neighbour.parent_node = ??
                         # neighbour.cost_to_node = ??
+                        # First time we see this neighbour
+                        unvisited_set.append(neighbour.idx)
+                        neighbour.parent_node = self.graph_.nodes_[node_idx]
+                        neighbour.cost_to_node = tentative_cost
+                        neighbour.cost_to_node_to_goal_heuristic = tentative_cost
 
                         
         

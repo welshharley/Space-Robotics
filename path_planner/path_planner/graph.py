@@ -421,21 +421,28 @@ class Graph:
 
         # Current group
         group_number = 1
+        N = len(self.nodes_)
 
+        for seed_idx in range(N):
+            if groups[seed_idx] != 0:
+                continue  # already assigned to some group
 
+            # From this seed, find all reachable nodes (indices into self.nodes_)
+            reachable = graph_search.find_connected_nodes(seed_idx)
 
+            # Label them with the current group_number
+            for j in reachable:
+                # Be defensive in case anything odd slips through
+                if 0 <= j < N:
+                    groups[j] = group_number
 
-
-
-
-
-
-
-
+            # Next component will get the next label
+            group_number += 1
 
 
         # Save it here so it will show up in the visualisation as different colours
         self.groups_ = groups
+        return groups
 
 
     def generate_marker_msgs(self):
