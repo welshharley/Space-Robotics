@@ -192,9 +192,19 @@ class Graph:
                                 ## YOUR CODE HERE ##
                                 ## TASK 6         ##
                                 ####################
-                                energy_cost = distance # Comment this out once you've done this Task
-                                # energy_cost = ??
-                                
+                                #energy_cost = distance # Comment this out once you've done this Task
+
+                                # 𝐸 = | (𝜇𝑚𝑔 cos 𝜃 + 𝑚𝑔 sin 𝜃)d𝑥 |
+                                # where 𝜃 = tan^−1(Δℎ/Δ𝑥)
+
+                                u = 0.1
+                                m = 1025
+                                g = 3.71
+                                [world_x1, world_y1, world_z1] = self.map_.pixel_to_world(node_i.x, node_i.y)
+                                [world_x2, world_y2, world_z2] = self.map_.pixel_to_world(node_j.x, node_j.y)
+                                dx = math.sqrt((world_x2 - world_x1)**2 + (world_y2 - world_y1)**2 + (world_z2 - world_z1)**2)
+                                theta = math.atan((world_z2 - world_z1) / math.sqrt((world_x2 - world_x1)**2 + (world_y2 - world_y1)**2))
+                                energy_cost = abs((u*m*g*math.cos(theta) + m*g*math.sin(theta))*dx)
 
 
 
@@ -267,20 +277,16 @@ class Graph:
                                 ## YOUR CODE HERE         ##
                                 ## TASK 6 -- after TASK 7 ##
                                 ############################
-                                energy_cost = distance # Comment this out once you've done this Task
+                                #energy_cost = distance # Comment this out once you've done this Task
                                 # energy_cost = ??
-                                
-
-
-
-
-
-
-
-
-
-
-
+                                u = 0.1
+                                m = 1025
+                                g = 3.71
+                                [world_x1, world_y1, world_z1] = self.map_.pixel_to_world(node_i.x, node_i.y)
+                                [world_x2, world_y2, world_z2] = self.map_.pixel_to_world(node_j.x, node_j.y)
+                                dx = math.sqrt((world_x2 - world_x1)**2 + (world_y2 - world_y1)**2 + (world_z2 - world_z1)**2)
+                                theta = math.atan((world_z2 - world_z1) / math.sqrt((world_x2 - world_x1)**2 + (world_y2 - world_y1)**2))
+                                energy_cost = abs((u*m*g*math.cos(theta) + m*g*math.sin(theta))*dx)
 
 
                             else:
